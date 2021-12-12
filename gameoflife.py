@@ -1,8 +1,9 @@
 import pygame
 import numpy as np
+import item
 
 class GameofLife:
-    def __init__(self, surface, width=1920, height=1080, scale=10, offset=1, active_color=(255, 255, 255), inactive_color=(50, 50, 50)):
+    def __init__(self, surface, init_type='random', width=1920, height=1080, scale=10, offset=1, active_color=(255, 255, 255), inactive_color=(50, 50, 50)):
         self.surface = surface
         self.width = width
         self.height = height
@@ -14,13 +15,33 @@ class GameofLife:
         self.columns = int(height / scale)
         self.rows = int(width / scale)
 
-        self.grid = np.random.randint(0, 2, size=(self.rows, self.columns), dtype=bool)
+        self.init_pos = [10,10]
+
+        #init grid
+        if init_type=='random':
+            self.grid = np.random.randint(0, 2, size=(self.rows, self.columns), dtype=bool)
+        elif init_type=='glider':
+            self.grid = np.zeros((self.rows, self.columns), dtype=bool)
+            self.add_to_init(glider = item.spaceship.glider())
+        elif init_type=='pulsar':
+            self.grid = np.zeros((self.rows, self.columns), dtype=bool)
+            self.add_to_init(item.oscillator.pulsar())
+        elif init_type=='gun':
+            self.grid = np.zeros((self.rows, self.columns), dtype=bool)
+            self.add_to_init(item.gun.gosper_glider_gun().T)
+        else:
+            print('EROOR: wrong init_type')
+        
+    def add_to_init(self,item):
+        self.grid[self.init_pos[0]:self.init_pos[0]+item.shape[0],
+                  self.init_pos[1]:self.init_pos[1]+item.shape[1]] = item
 
     def run(self):
         """"
             Update and redraw the current grid state
         """
         self.draw_grid()
+        self.update_grid()
             
     def draw_grid(self):
         """
@@ -64,20 +85,14 @@ class GameofLife:
                     continue
 
         # Updating the cell's state
-        if current_state and alive_neighbors < 2:                                       # dies as if by underpopulation
+        if current_state and alive_neighbors < 2: # dies: underpopulation
             return False
-        elif current_state and (alive_neighbors == 2 or alive_neighbors == 3):          # lives to the next generation
+        elif current_state and alive_neighbors > 3: # dies: overpopulation
+            return False
+        elif current_state and (alive_neighbors == 2 or alive_neighbors == 3): # stay alive
             return True
-        elif current_state and alive_neighbors > 3:                                     # dies as if by overpopulation
-            return False
-        elif ~current_state and alive_neighbors == 3:                                   # becomes alive as if by reproduction
+        elif ~current_state and alive_neighbors == 3: # born: reproduction
             return True
         else:
             return current_state
     
-    def run(self):
-        """"
-            Update and redraw the current grid state
-        """
-        self.draw_grid()
-        self.update_grid()
