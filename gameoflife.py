@@ -68,7 +68,8 @@ class GameofLife:
 
     def update_cell(self, x, y):
         """
-            Update single cell based on Conway's game of life rules
+            Update single cell based on Conway's game of life rules. 
+            /!\ bug on borders : need to be fixed
         """
         current_state = self.grid[x, y]
         alive_neighbors = 0
