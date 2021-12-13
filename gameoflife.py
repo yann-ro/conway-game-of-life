@@ -1,6 +1,5 @@
 import pygame
 import numpy as np
-import item
 
 class GameofLife:
     def __init__(self, surface, init_type='random', width=1920, height=1080, scale=10, offset=1, active_color=(255, 255, 255), inactive_color=(50, 50, 50)):
@@ -17,20 +16,9 @@ class GameofLife:
 
         self.init_pos = [10,10]
 
-        #init grid
-        if init_type=='random':
-            self.grid = np.random.randint(0, 2, size=(self.rows, self.columns), dtype=bool)
-        elif init_type=='glider':
-            self.grid = np.zeros((self.rows, self.columns), dtype=bool)
-            self.add_to_init(glider = item.spaceship.glider())
-        elif init_type=='pulsar':
-            self.grid = np.zeros((self.rows, self.columns), dtype=bool)
-            self.add_to_init(item.oscillator.pulsar())
-        elif init_type=='gun':
-            self.grid = np.zeros((self.rows, self.columns), dtype=bool)
-            self.add_to_init(item.gun.gosper_glider_gun().T)
-        else:
-            print('EROOR: wrong init_type')
+        self.grid = np.zeros((self.rows, self.columns), dtype=bool)
+        with open(f'item/{init_type}.npy', 'rb') as f:
+            self.add_to_init(np.load(f).T)
         
     def add_to_init(self,item):
         self.grid[self.init_pos[0]:self.init_pos[0]+item.shape[0],
