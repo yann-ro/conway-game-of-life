@@ -1,5 +1,6 @@
 import pygame
 import numpy as np
+import item
 
 class GameofLife:
     def __init__(self, surface, init_type='random', width=1920, height=1080, scale=10, offset=1, active_color=(255, 255, 255), inactive_color=(50, 50, 50)):
@@ -16,9 +17,13 @@ class GameofLife:
 
         self.init_pos = [10,10]
 
-        self.grid = np.zeros((self.rows, self.columns), dtype=bool)
-        with open(f'item/{init_type}.npy', 'rb') as f:
-            self.add_to_init(np.load(f).T)
+        #init grid
+        if init_type:
+            self.grid = np.zeros((self.rows, self.columns), dtype=bool)
+            with open(f'item/{init_type}.npy', 'rb') as f:
+                self.add_to_init(np.load(f).T)
+        else:
+            self.grid = np.random.randint(0, 2, size=(self.rows, self.columns), dtype=bool)
         
     def add_to_init(self,item):
         self.grid[self.init_pos[0]:self.init_pos[0]+item.shape[0],
