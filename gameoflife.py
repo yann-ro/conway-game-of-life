@@ -3,7 +3,7 @@ import numpy as np
 import item
 
 class GameofLife:
-    def __init__(self, surface, init_type='random', width=1920, height=1080, scale=10, offset=1, active_color=(255, 255, 255), inactive_color=(50, 50, 50)):
+    def __init__(self, surface, init_type=None, width=1920, height=1080, scale=10, offset=1, active_color=(255, 255, 255), inactive_color=(50, 50, 50)):
         self.surface = surface
         self.width = width
         self.height = height

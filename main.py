@@ -2,15 +2,16 @@ import sys
 import pygame
 from gameoflife import GameofLife
 
-def launch(init_type='random',fps=60):
+def launch(init_type=None,fps=60):
     pygame.init()
     pygame.display.set_caption("Conway's Game of Life")
 
     WIDTH = 1300
     HEIGHT = 700
+    scale = 5
 
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
-    conway = GameofLife(screen, scale=13,init_type=init_type)
+    conway = GameofLife(screen, scale=scale,init_type=init_type)
 
     clock = pygame.time.Clock()
 
@@ -28,7 +29,7 @@ def launch(init_type='random',fps=60):
 
 if __name__== "__main__":
     if len(sys.argv) == 3:
-        launch(sys.argv[1],sys.argv[2])
+        launch(sys.argv[1],int(sys.argv[2]))
     elif len(sys.argv) == 2:
         launch(sys.argv[1])
     else:
