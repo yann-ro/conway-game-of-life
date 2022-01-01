@@ -1,16 +1,16 @@
-Name,Category,Formula
-block,oscillators,X = X ⊕ #0
-blinker,oscillators,X = X ⊕ ^2 #0
-caterer,oscillators,X = X ⊕ ^3 #0
-mazing,oscillators,X = X ⊕ ^4 #0
-pseudo-barberpole,oscillators,X = X ⊕ ^5 #0
-unix,oscillators,X = X ⊕ ^6 #0
-burloaferimeter,oscillators,X = X ⊕ 7 #0
-figure_eight,oscillators,X = X ⊕ ^8 #0
-29P9,oscillators,X = X ⊕ ^9 #0
-glider,spaceship,X ↓ → = X ⊕ ^4 #0
-58P5H1V1,spaceship,X ↓ → = X ⊕ ^5 #0
-77P6H1V1,spaceship,X ↓ → = X ⊕ ^6 #0
-83P7H1V1,spaceship,X ↓ → = X ⊕ ^7 #0
-lightweight_spaceship,spaceship,X ↓ → = X ⊕ ^2 #0
-64P2H1V0,spaceship,X ↓ = X ⊕ ^2 #4
+Name,Category,Formula,Spontaneous emergence
+block,oscillators,X = X ⊕ #0,1
+blinker,oscillators,X = X ⊕ ^2 #0,1
+caterer,oscillators,X = X ⊕ ^3 #0,1
+mazing,oscillators,X = X ⊕ ^4 #0,1
+pseudo-barberpole,oscillators,X = X ⊕ ^5 #0,0
+unix,oscillators,X = X ⊕ ^6 #0,1
+burloaferimeter,oscillators,X = X ⊕ 7 #0,0
+figure_eight,oscillators,X = X ⊕ ^8 #0,1
+29P9,oscillators,X = X ⊕ ^9 #0,0
+glider,spaceship,X ↓ → = X ⊕ ^4 #0,1
+58P5H1V1,spaceship,X ↓ → = X ⊕ ^5 #0,0
+77P6H1V1,spaceship,X ↓ → = X ⊕ ^6 #0,0
+83P7H1V1,spaceship,X ↓ → = X ⊕ ^7 #0,0
+lightweight_spaceship,spaceship,X ↓ → = X ⊕ ^2 #0,1
+64P2H1V0,spaceship,X ↓ = X ⊕ ^2 #4,0
