@@ -3,4 +3,4 @@
 ![capture gif](preview.gif)
 
 ---
-`launch>` python3 player.py [options: name_of_pattern fps] 
+`launch>` python3 player.py (name_of_pattern) (fps) 
