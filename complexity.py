@@ -9,11 +9,10 @@ def kolmogorov_conditional_complexity(formula,bit_size_symbol=5):
     for elem in formula.split():
         if elem[0]=='#':
             kc += len(compact_code(int(elem[1:])))
+        elif elem[0]=='^': 
+            kc += 2*bit_size_symbol+len(compact_code(int(elem[1:])))
         else:
-            try: kc += len(compact_code(int(elem)))
-            except:
-                if elem=='^': kc += 2*bit_size_symbol
-                else: kc += bit_size_symbol
+            kc += bit_size_symbol
     
     return kc
 
