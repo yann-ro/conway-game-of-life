@@ -16,9 +16,9 @@ def kolmogorov_conditional_complexity(formula,bit_size_symbol=5):
     
     return kc
 
-def causal_complexity(array):
+def shannon_information(array):
     """
-    causal_complexity = - log2(1/P) hors ici P = 2^(nb_pixels) d'où la simplification
+    shannon_information = - log2(1/P) hors ici P = 2^(nb_pixels) d'où la simplification
     """
     if len(array.shape)==1:
         return int(array.shape[0])
@@ -27,4 +27,4 @@ def causal_complexity(array):
         return int(array.shape[0]*array.shape[1])
 
 def specified_complexity(formula,array):
-    return causal_complexity(array)-kolmogorov_conditional_complexity(formula)
+    return shannon_information(array)-kolmogorov_conditional_complexity(formula)
